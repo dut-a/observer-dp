@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PA.Subject">
+    <Position X="1.75" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAIAAAABCAAAAAAAAAAA=</HashCode>
+      <FileName>Src\Subject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="poHead" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PA.UpdateScoreObserver">
+    <Position X="1" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="UpdateScoreObserver" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Src\UpdateScoreObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PA.Observer">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <Members>
+      <Method Name="Observer" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAQCABAAAAAAAAAAAA=</HashCode>
+      <FileName>Src_ReadOnly\Observer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pSubject" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PA.PlaySoundObserver">
+    <Position X="3" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="PlaySoundObserver" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Src\PlaySoundObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PA.RemoveAlienObserver">
+    <Position X="5.25" Y="4.25" Width="1.75" />
+    <Members>
+      <Method Name="RemoveAlienObserver" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Src\RemoveAlienObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PA.RemoveMissileObserver">
+    <Position X="7.25" Y="4.25" Width="2" />
+    <Members>
+      <Method Name="RemoveMissileObserver" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Src\RemoveMissileObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PA.SLink" Collapsed="true">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Src_ReadOnly\SLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
