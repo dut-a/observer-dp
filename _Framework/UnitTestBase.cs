@@ -39,27 +39,22 @@
 // ----------------------------------
 
 using System;
-using System.Runtime.CompilerServices;
 using System.Diagnostics;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
-namespace UnitTest
-{
-    class DummyException : Exception
-    {
-        public DummyException()
-        {
+namespace UnitTest {
+    class DummyException : Exception {
+        public DummyException() {
             // dummy exception to force the next call up the stack to deal with problem
             // great example on how to exploit exceptions for evil
             return;
         }
     }
 
-    public class Framework
-    {
-        public struct UnitStats
-        {
+    public class Framework {
+        public struct UnitStats {
             public int testCount;
             public int testPass;
             public int testFail;
@@ -67,8 +62,7 @@ namespace UnitTest
             public int indvAsserts;
         }
 
-        public struct UnitData
-        {
+        public struct UnitData {
             public bool result;
             public bool ignore;
             public string memberName;
@@ -76,8 +70,7 @@ namespace UnitTest
             public int sourceLineNumber;
         }
 
-        public Framework()
-        {
+        public Framework() {
             this.data.result = true;
             this.data.memberName = "";
             this.data.sourceFilePath = "";
@@ -90,14 +83,12 @@ namespace UnitTest
             this.stats.indvAsserts = 0;
         }
 
-        public static void Dump(string value)
-        {
+        public static void Dump(string value) {
             Debug.Write(value);
             Console.Write(value);
         }
 
-        public static void runMe()
-        {
+        public static void runMe() {
 
             string FRAMEWORK_VER = "1.00";
 
@@ -114,13 +105,11 @@ namespace UnitTest
             var assembly = typeof(UnitTestBase).Assembly;
             var types = assembly.GetTypes().Where(t => t.IsSubclassOf(baseType));
 
-            foreach (var subType in types)
-            {
+            foreach (var subType in types) {
                 string ns = subType.FullName;
                 object obj = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(ns);
 
-                foreach (MethodInfo item in subType.GetRuntimeMethods())
-                {
+                foreach (MethodInfo item in subType.GetRuntimeMethods()) {
                     string methodName = new string(item.Name.ToCharArray());
                     MethodInfo method = subType.GetMethod(methodName);
 
@@ -130,35 +119,27 @@ namespace UnitTest
                         methodName != "GetHashCode" &&
                         methodName != "GetType" &&
                         methodName != "Finalize" &&
-                        methodName != "MemberwiseClone")
-                    {
+                        methodName != "MemberwiseClone") {
 
                         // OK, here's where its fucked up....
                         // Once in the CustomUnitTests methods fail, abort - process no more code.
                         // To do this, we throw an exception in CHECK(), it get passed up the call stack to here
                         // here we do nothing, but it handles the exception, since there is a catch
                         // Viola - we exited the unit test on the first fail
-                        try
-                        {
+                        try {
                             method.Invoke(obj, null);
-                        }
-                        catch
-                        {
+                        } catch {
                         }
 
                         Framework testResults = Framework.getResults();
 
                         testResults.stats.testCount++;
-                        if (testResults.data.ignore == true)
-                        {
+                        if (testResults.data.ignore == true) {
                             testResults.stats.testDisabled++;
                             Dump("-IGNORE: " + testResults.data.memberName + "()\n");
 
-                        }
-                        else
-                        {
-                            if (testResults.data.result == false)
-                            {
+                        } else {
+                            if (testResults.data.result == false) {
                                 testResults.stats.testFail++;
                                 Dump("-FAILED: " + testResults.data.memberName + "()\n");
                                 Dump("    CHECK failure (" + testResults.data.result + ")\n");
@@ -176,9 +157,7 @@ namespace UnitTest
                                 //Trace.Write("(" + testResults.data.sourceLineNumber + "): ");
                                 //Trace.Write(testResults.data.memberName + "() - ");
                                 //Trace.WriteLine("CHECK failure (" + testResults.data.result + ")");
-                            }
-                            else
-                            {
+                            } else {
                                 testResults.stats.testPass++;
                                 Dump(" PASSED: " + testResults.data.memberName + "()\n");
                             }
@@ -210,13 +189,11 @@ namespace UnitTest
         } // runME
 
 
-        public static Framework getResults()
-        {
+        public static Framework getResults() {
             return Framework.privInstance();
         }
 
-        public static void ready()
-        {
+        public static void ready() {
             // Partial reset between tests
             Framework t = Framework.privInstance();
 
@@ -229,11 +206,9 @@ namespace UnitTest
 
         // ---- Private: -----------------------------------------
 
-        private static Framework privInstance()
-        {
+        private static Framework privInstance() {
             // Singleton - baby!
-            if (instance == null)
-            {
+            if (instance == null) {
                 instance = new Framework();
             }
 
@@ -247,13 +222,11 @@ namespace UnitTest
 
     } // class Framework
 
-    public class UnitTestBase
-    {
+    public class UnitTestBase {
         public static void IGNORE(
                                 [CallerMemberName] string inMemberName = "",
                                 [CallerFilePath] string inSourceFilePath = "",
-                                [CallerLineNumber] int inSourceLineNumber = 0)
-        {
+                                [CallerLineNumber] int inSourceLineNumber = 0) {
             Framework t = Framework.getResults();
 
             t.data.ignore = true;
@@ -283,8 +256,7 @@ namespace UnitTest
         public static void CHECK(bool inResult,
                                 [CallerMemberName] string inMemberName = "",
                                 [CallerFilePath] string inSourceFilePath = "",
-                                [CallerLineNumber] int inSourceLineNumber = 0)
-        {
+                                [CallerLineNumber] int inSourceLineNumber = 0) {
             Framework t = Framework.getResults();
 
             t.data.ignore = false;
@@ -304,8 +276,7 @@ namespace UnitTest
             // at the next higher level handle the imaginary dummy exception (do nothing)
             // viola - we exited out of testMethod() from an outside function
             // bartender - get me a drink!
-            if (inResult == false)
-            {
+            if (inResult == false) {
                 // dummy exception to force us to walk up the stack.
                 throw new DummyException();
             }
@@ -313,15 +284,12 @@ namespace UnitTest
 
     } // class UnitTestBase
 
-    public class Utility
-    {
-        public static bool AreEqual(float a, float b, float epsilon = 0.001f)
-        {
+    public class Utility {
+        public static bool AreEqual(float a, float b, float epsilon = 0.001f) {
             return (Math.Abs(a - b) < epsilon);
         }
 
-        public static bool AreEqual(double a, double b, double epsilon = 0.001f)
-        {
+        public static bool AreEqual(double a, double b, double epsilon = 0.001f) {
             return (Math.Abs(a - b) < epsilon);
         }
 

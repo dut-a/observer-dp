@@ -2,22 +2,16 @@
 // Copyright 2023, Ed Keenan, all rights reserved.
 //----------------------------------------------------------------------------- 
 
-using System;
-using System.Diagnostics;
 using UnitTest;
 
 // ----------------------------------
 // ---     DO NOT MODIFY FILE     ---
 // ----------------------------------
 
-namespace PA
-{
-    public class Flyweight_Tests : UnitTestBase
-    {
-        public void Observer_Shakeout()
-        {
-            if (Tests_Flags.Shakeout_Enable)
-            {
+namespace PA {
+    public class Flyweight_Tests : UnitTestBase {
+        public void Observer_Shakeout() {
+            if (Tests_Flags.Shakeout_Enable) {
 
                 Subject pSubject = new Subject();
                 CHECK(pSubject != null);
@@ -76,9 +70,7 @@ namespace PA
 
                 CHECK(MailBox_Observer.TestValue() == MailBox_Observer.Status.EMPTY);
 
-            }
-            else
-            {
+            } else {
                 IGNORE();
             }
         }

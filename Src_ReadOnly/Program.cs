@@ -2,19 +2,13 @@
 // Copyright 2023, Ed Keenan, all rights reserved.
 //----------------------------------------------------------------------------- 
 
-using System;
-using System.Diagnostics;
-
 // ----------------------------------
 // ---     DO NOT MODIFY FILE     ---
 // ----------------------------------
 
-namespace PA
-{
-    public class Program
-    {
-        static void Main(string[] args)
-        {
+namespace PA {
+    public class Program {
+        static void Main(string[] args) {
 
             // 1) Look at the Tests directory for the test
             //    Enable/Disable Unit tests in Flags
